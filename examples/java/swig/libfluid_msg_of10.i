@@ -7,6 +7,7 @@ typedef unsigned int of_error;
 
 %include "stdint.i"
 %include "various.i"
+%include "std_vector.i"
 
 %typemap(jni)    (uint8_t *) "jbyteArray"
 %typemap(jni)    (void *) "jbyteArray"
@@ -14,6 +15,7 @@ typedef unsigned int of_error;
 %typemap(jtype)  (void *) "byte[]"
 %typemap(jstype) (uint8_t *) "byte[]"
 %typemap(jstype) (void *) "byte[]"
+%template(Ports_) std::vector<fluid_msg::of10::Port>;
 
 %typemap(in) void* {
     $1 = (void *) JCALL2(GetByteArrayElements, jenv, $input, 0);
